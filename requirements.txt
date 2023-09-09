@@ -9,4 +9,5 @@ Flask
 optuna
 lightgbm
 category_encoders
+dill
 #-e .
