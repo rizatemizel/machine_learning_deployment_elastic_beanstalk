@@ -10,4 +10,5 @@ optuna
 lightgbm
 category_encoders
 dill
+sklego
 #-e .
