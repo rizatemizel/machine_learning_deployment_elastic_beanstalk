@@ -21,15 +21,32 @@ class DataIngestion:
         self.ingestion_config=DataIngestionConfig()
 
     def initiate_data_ingestion(self):
-        logging.info("Entered the data ingestion method or component")
+        logging.info("Data ingestion started")
         try:
             df=pd.read_csv('model_development\\training_data\\data.csv')
-            logging.info('Read the dataset as dataframe')
+            logging.info('Reading data set')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
             df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
+            
+            
+            # Drop outliers
+            df = df.drop(df[(df['GrLivArea'] > 4000)
+                                                & (df['SalePrice'] < 200000)].index)
+            df = df.drop(df[(df['GarageArea'] > 1200)
+                                                & (df['SalePrice'] < 300000)].index)
+            df = df.drop(df[(df['TotalBsmtSF'] > 4000)
+                                                & (df['SalePrice'] < 200000)].index)
+            df = df.drop(df[(df['1stFlrSF'] > 4000)
+                                                & (df['SalePrice'] < 200000)].index)
 
-            logging.info("Train test split initiated")
+            df = df.drop(df[(df['TotRmsAbvGrd'] > 12)
+                                                & (df['SalePrice'] < 230000)].index)
+
+
+
+
+            logging.info("Train test split is initiated")
             
             train_set,test_set=train_test_split(df,test_size=0.2,random_state=42)
             train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
