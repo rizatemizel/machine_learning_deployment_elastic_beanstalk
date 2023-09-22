@@ -42,8 +42,9 @@ class DataIngestion:
 
             df = df.drop(df[(df['TotRmsAbvGrd'] > 12)
                                                 & (df['SalePrice'] < 230000)].index)
-
-
+            
+            df.rename(columns={'3SsnPorch':'thirdSsnPorch',
+                                     '2ndFlrSF':'secondFlrSF', '1stFlrSF':'firstFlrSF' }, inplace=True)
 
 
             logging.info("Train test split is initiated")

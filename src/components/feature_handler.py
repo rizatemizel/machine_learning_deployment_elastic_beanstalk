@@ -3,7 +3,6 @@ from sklearn.base import BaseEstimator, TransformerMixin
 import category_encoders as ce
 
 
-
 class FeatureCreator(BaseEstimator, TransformerMixin):
     def __init__(self, add_attributes=True):
         
@@ -22,9 +21,9 @@ class FeatureCreator(BaseEstimator, TransformerMixin):
             X_copy["MiscFeatureExtended"] = (X_copy["PoolQC"].notnull()*1 + X_copy["MiscFeature"].notnull()*1+ X_copy["Fence"].notnull()*1).astype('int64')
             X_copy["Has_Alley"] = X_copy["Alley"].notnull().astype('int64')
             X_copy["Lot_occupation"] = X_copy["GrLivArea"]  / X_copy["LotArea"]
-            X_copy["Number_of_floors"] = (X_copy["TotalBsmtSF"] != 0).astype('int64') + (X_copy["1stFlrSF"] != 0).astype('int64') + (X_copy["2ndFlrSF"] != 0).astype('int64')
+            X_copy["Number_of_floors"] = (X_copy["TotalBsmtSF"] != 0).astype('int64') + (X_copy["firstFlrSF"] != 0).astype('int64') + (X_copy["secondFlrSF"] != 0).astype('int64')
             X_copy['Total_Close_Live_Area'] = X_copy['GrLivArea'] + X_copy['TotalBsmtSF'] 
-            X_copy['Outside_live_area'] =  X_copy['WoodDeckSF'] + X_copy['OpenPorchSF'] + X_copy['EnclosedPorch']+ X_copy['3SsnPorch'] + X_copy['ScreenPorch']
+            X_copy['Outside_live_area'] =  X_copy['WoodDeckSF'] + X_copy['OpenPorchSF'] + X_copy['EnclosedPorch']+ X_copy['thirdSsnPorch'] + X_copy['ScreenPorch']
             X_copy['Total_usable_area'] = X_copy['Total_Close_Live_Area'] + X_copy['Outside_live_area']
             X_copy['Area_Quality_Indicator'] = X_copy['Total_usable_area'] * X_copy['OverallQual']
             X_copy['Area_Qual_Cond_Indicator'] = X_copy['Total_usable_area'] * X_copy['OverallQual']* X_copy['OverallCond']
@@ -41,10 +40,7 @@ class FeatureCreator(BaseEstimator, TransformerMixin):
             X_copy['House_Age2'] = X_copy['YrSold'] - X_copy['YearRemodAdd']
             return X_copy
         else:
-            return X_copy
-        
-        
-# ordinal transformer
+            return X_copy        
 
 
     

@@ -48,6 +48,10 @@ categorical_features = ['MSZoning', 'Street', 'Alley', 'LotShape', 'LandContour'
                         'GarageQual', 'GarageCond', 'PavedDrive', 'PoolQC', 'Fence',
                         'MiscFeature', 'SaleType', 'SaleCondition']
 
+
+
+
+
 ordinal_features = ['LotShape', 'Utilities', 'LandSlope', 'ExterQual', 'ExterCond',
                     'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2',
                     'HeatingQC', 'KitchenQual', 'Functional', 'FireplaceQu', 'GarageFinish',
@@ -61,12 +65,12 @@ nominal_features = ['HouseStyle', 'BldgType', 'MasVnrType', 'Electrical', 'LandC
 
 numerical_features = ['GarageYrBlt', 'GarageArea', 'Area_Qual_Cond_Indicator',
                       'Lot_occupation', 'SalePrice', 'MasVnrArea', 'OverallCond',
-                      'BedroomAbvGr', '3SsnPorch', 'MoSold', 'TotalBath', 'BsmtFinSF2',
-                      '2ndFlrSF', 'Total_usable_area', 'WoodDeckSF', 'KitchenAbvGr',
+                      'BedroomAbvGr', 'thirdSsnPorch', 'MoSold', 'TotalBath', 'BsmtFinSF2',
+                      'secondFlrSF', 'Total_usable_area', 'WoodDeckSF', 'KitchenAbvGr',
                       'HalfBath', 'EnclosedPorch', 'BsmtHalfBath', 'YearRemodAdd',
                       'MiscFeatureExtended', 'BsmtUnfSF', 'House_Age', 'OpenPorchSF',
                       'Lack_of_feature_index', 'YearBuilt', 'HasBsmt', 'Fireplaces',
-                      'Total_Close_Live_Area', '1stFlrSF', 'GrLivArea', 'YrSold',
+                      'Total_Close_Live_Area', 'firstFlrSF', 'GrLivArea', 'YrSold',
                       'ScreenPorch', 'House_Age2', 'FullBath', 'Has_Alley', 'LotArea',
                       'MSSubClass', 'GarageCars', 'Outside_live_area', 'Has_garage',
                       'TotalBsmtSF', 'Is_Remodeled', 'Area_Quality_Indicator',
@@ -74,7 +78,7 @@ numerical_features = ['GarageYrBlt', 'GarageArea', 'Area_Qual_Cond_Indicator',
                       'Quality_conditition_2', 'Number_of_floors', 'LotFrontage',
                       'Quality_conditition', 'LowQualFinSF', 'BsmtFullBath', 'MiscVal']
 
-skewed_features = ['MiscVal', 'PoolArea', 'LotArea', '3SsnPorch', 'LowQualFinSF',
+skewed_features = ['MiscVal', 'PoolArea', 'LotArea', 'thirdSsnPorch', 'LowQualFinSF',
                    'BsmtFinSF2', 'ScreenPorch', 'EnclosedPorch', 'Lot_occupation',
                    'MasVnrArea', 'OpenPorchSF', 'Area_Qual_Cond_Indicator', 'LotFrontage',
                    'WoodDeckSF', 'Area_Quality_Indicator', 'Outside_live_area']
@@ -344,10 +348,10 @@ class PipelineTrainer:
             train_df=pd.read_csv(train_path)
             test_df=pd.read_csv(test_path)
             
-            X_train=train_df.drop(columns=[target_column_name],axis=1)
+            X_train=train_df.drop(columns=[target_column_name,'Id'],axis=1)
             y_train=train_df[target_column_name]
             
-            X_test=test_df.drop(columns=[target_column_name],axis=1)
+            X_test=test_df.drop(columns=[target_column_name,'Id'],axis=1)
             y_test=test_df[target_column_name]
             
 
