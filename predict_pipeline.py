@@ -6,7 +6,6 @@ import numpy as np
 
 # 2. Prediction pipeline
 
-
 def predict_price(data:DataTypes, model):
     data = data.dict()
     data = pd.DataFrame([data])
