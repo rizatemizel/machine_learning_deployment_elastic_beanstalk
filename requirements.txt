@@ -1,12 +1,12 @@
 pandas==1.5.3
 numpy==1.24.3
-seaborn==0.12.2
-matplotlib==3.7.1
+#seaborn==0.12.2
+#matplotlib==3.7.1
 scikit-learn==1.3.0
 catboost==1.2.1
 xgboost==1.7.6
-Flask==2.2.2
-optuna==3.3.0
+#Flask==2.2.2
+#optuna==3.3.0
 lightgbm==4.0.0
 category-encoders==2.6.2
 sklego==0.0
