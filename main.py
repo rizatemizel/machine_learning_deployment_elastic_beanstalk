@@ -10,17 +10,17 @@ from predict_pipeline import predict_price
 
 
 # 2. Create the app object
-application = FastAPI()
+app = FastAPI()
 pickle_in = open("artifacts\pipeline.pkl","rb")
 regressor=pickle.load(pickle_in)
 
 # 3. Index route
-@application.get('/')
+@app.get('/')
 def index():
     return {'message': 'Welcome Housing Price Prediction App'}
 
 # 4. Make prediction
-@application.post('/predict')
+@app.post('/predict')
 def predict(data:DataTypes):
     prediction = predict_price(data, regressor)
     return {
@@ -29,6 +29,6 @@ def predict(data:DataTypes):
     
 # 5. Run the API with uvicorn
 if __name__ == '__main__':
-    uvicorn.run(application, host='0.0.0.0', port=8080)
+    uvicorn.run(app, host='127.0.0.1', port=8000)
     
-#uvicorn application:application --reload
+#uvicorn main:app --reload
