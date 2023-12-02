@@ -11,7 +11,7 @@ from predict_pipeline import predict_price
 
 # 2. Create the app object
 app = FastAPI()
-pickle_in = open("artifacts\pipeline.pkl","rb")
+pickle_in = open("pipeline.pkl","rb")
 regressor=pickle.load(pickle_in)
 
 # 3. Index route
