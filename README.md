@@ -4,9 +4,11 @@ This repo contains an end-to-end data science project on Kaggle's housing price 
 
 My work was the best-performing shared notebook among over 55 thousand trials in Kaggle's machine-learning competition for housing price prediction. You can find the original notebook at this link: https://www.kaggle.com/code/rzatemizel/feature-engineering-optuna-stacked-pipe
 
-Here, I used the same notebook with some little refinements for deployment. I wanted this project to be quickly adaptable for any tabular data set. I kept it modular and retrainable.
+Here, I used the same notebook with some little refinements for deployment. 
 
-Finally, I deployed the project on AWS Elastic Beanstalk.
+I wanted this project to be quickly adaptable for any tabular data set. I tried to keep it modular and retrainable.
+
+Finally, I deployed the project on AWS Elastic Beanstalk as a FastAPI based web application.
 ## Brief Overview of File Structure
 .ebextensions: Configuration for elastic beanstalk deployment
 artifacts: contains training data and trained pipeline as pkl
@@ -27,11 +29,13 @@ src: contains data ingestion, feature engineering, and training modules with som
 ## Model Development Approach
 You can check model_development_notebook or Kaggle link for development details. These are almost annoyingly instructive written notebooks.
 
-But very briefly:
+Very briefly:
 An ensemble model with various base models is used for training
-Scikit-learn pipelines are heavily used for preprocessing, feature engineering, training, and ensembling. Pipelines made it possible to deploy our project with a single pkl file that quickly 
+
+Scikit-learn pipelines are heavily used for preprocessing, feature engineering, training, and ensembling. Pipelines made it possible to deploy my project quickly with a single pkl file. 
 
 Optuna package is used for Bayesian Hyperparameter optimization.
+
 
 ![pipeline](https://github.com/rizatemizel/ml_deployment/assets/127015640/e80b8e2f-eb3e-400c-b152-75f1c7f3a085)
 
@@ -40,7 +44,7 @@ Optuna package is used for Bayesian Hyperparameter optimization.
 I deployed the project on the AWS Elastic Beanstalk environment as a FastAPI.
 
 The .ebextensions folder, procfile, and appplication.py files are required configurations for this purpose.
-In addition, you need to create an application and associated environment in Elastic Beanstalk and deploy your application via a code pipeline from a GitHub repository.
+In addition, you need to create an application and associated environment in Elastic Beanstalk and deploy your application via AWS code pipeline from a GitHub repository.
 
 What does it look like at the end?
 
